@@ -9,6 +9,6 @@
 ## 🛠 Habilidades
 
 <div style="display: inline_block"><br>
-  <img align="center" alt="Rafa-Js" height="50" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg"/>
+  <img align="center" alt="Lilo-C" height="50" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg"/>
 </div>
             
