@@ -1,9 +1,9 @@
 # Olá, eu sou o Murilo! 👋
 
 <div align="center">
-    <img height="180em" src="https://github-readme-stats.vercel.app/api?username=LiloMarino&theme=vue-dark&show_icons=true&hide_border=true&count_private=true" />
-    <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=LiloMarino&theme=vue-dark&show_icons=true&hide_border=true&layout=compact&langs_count=6" />
-    <img width="762em" src="https://github-readme-stats.vercel.app/api/wakatime?username=LiloMarino&layout=compact&theme=vue-dark" />
+    <img height="180em" src="https://github-readme-stats.vercel.app/api?username=LiloMarino&theme=dark&show_icons=true&hide_border=true&count_private=true" />
+    <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=LiloMarino&theme=dark&show_icons=true&hide_border=true&layout=compact&langs_count=6" />
+    <img width="762em" src="https://github-readme-stats.vercel.app/api/wakatime?username=LiloMarino&layout=compact&theme=dark" />
 </div>
 
 ## 🛠 Habilidades
