@@ -3,6 +3,7 @@
 <div align="center">
     <img height="180em" src="https://github-readme-stats.vercel.app/api?username=LiloMarino&theme=dark&show_icons=true&hide_border=true&count_private=true" />
     <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=LiloMarino&theme=dark&show_icons=true&hide_border=true&layout=compact&langs_count=6" />
+    <img width="762em" src="https://github-readme-streak-stats.herokuapp.com/?user=LiloMarino&theme=dark" />
     <img width="762em" src="https://github-readme-stats.vercel.app/api/wakatime?username=LiloMarino&layout=compact&theme=dark" />
 </div>
 
