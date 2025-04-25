@@ -17,10 +17,15 @@ Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 
 # Atalhos e aliases estilo Unix
-Set-Alias ll Get-ChildItem
+Set-Alias ll "Get-ChildItem -Force -l"
 Set-Alias la "Get-ChildItem -Force"
-Set-Alias grep Select-String
-Set-Alias tail Get-Content
+Set-Alias l "Get-ChildItem"
+Set-Alias c "Clear-Host"
 Set-Alias cat Get-Content
-Set-Alias md5 Get-FileHash
-Set-Alias sha256 'Get-FileHash -Algorithm SHA256'
+Set-Alias touch New-Item
+Set-Alias tail "Get-Content -Tail 20 -Wait"
+Set-Alias grep Select-String
+Set-Alias mv Move-Item
+Set-Alias rm Remove-Item
+Set-Alias which Get-Command
+Set-Alias pwd Get-Location
