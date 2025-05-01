@@ -37,7 +37,7 @@ function cat_files {
     )
 
     if (-not $Files -or $Files.Count -eq 0) {
-        Write-Host "Uso: cat_files <arquivo1> <arquivo2> ..."
+        Write-Output "Uso: cat_files <arquivo1> <arquivo2> ..."
         return
     }
 
@@ -45,19 +45,19 @@ function cat_files {
         $path = Resolve-Path -LiteralPath $file -ErrorAction SilentlyContinue
 
         if (-not $path) {
-            Write-Host "Erro: Arquivo '$file' não encontrado."
+            Write-Output "Erro: Arquivo '$file' não encontrado."
             continue
         }
 
         $filePath = $path.ProviderPath
         $fileName = [System.IO.Path]::GetFileName($filePath)
 
-        Write-Host "$fileName"
+        Write-Output "$fileName"
         try {
             Get-Content -Path $filePath -Raw -Encoding UTF8
         }
         catch {
-            Write-Host "Erro ao ler '$filePath': $_"
+            Write-Output "Erro ao ler '$filePath': $_"
         }
     }
 }
