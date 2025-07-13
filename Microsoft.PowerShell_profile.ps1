@@ -15,6 +15,7 @@ Set-PSReadLineOption -EditMode Windows
 Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
+Set-PSReadLineKeyHandler -Chord Ctrl+RightArrow -Function ForwardWord
 
 # Atalhos e aliases estilo Unix
 Set-Alias ll "Get-ChildItem -Force -l"
@@ -29,6 +30,7 @@ Set-Alias mv Move-Item
 Set-Alias rm Remove-Item
 Set-Alias which Get-Command
 Set-Alias pwd Get-Location
+Set-Alias treeunix "C:\ProgramData\chocolatey\bin\tree.exe"
 
 function cat_files {
     param (
