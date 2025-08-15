@@ -32,6 +32,9 @@ Set-Alias which Get-Command
 Set-Alias pwd Get-Location
 Set-Alias treeunix "C:\ProgramData\chocolatey\bin\tree.exe"
 
+function sha256 { param($file) certutil -hashfile $file SHA256 }
+function md5    { param($file) certutil -hashfile $file MD5 }
+
 function cat_files {
     param (
         [Parameter(ValueFromRemainingArguments = $true)]
@@ -64,3 +67,34 @@ function cat_files {
     }
 }
 
+function clip_files {
+    param (
+        [Parameter(ValueFromRemainingArguments = $true)]
+        [string[]]$Files
+    )
+
+    if (-not $Files -or $Files.Count -eq 0) {
+        Write-Output "Uso: clip_files <arquivo1> <arquivo2> ..."
+        return
+    }
+
+    $content = ""
+    foreach ($file in $Files) {
+        $path = Resolve-Path -LiteralPath $file -ErrorAction SilentlyContinue
+        if (-not $path) {
+            Write-Output "Erro: Arquivo '$file' não encontrado."
+            continue
+        }
+        $filePath = $path.ProviderPath
+        $fileName = [System.IO.Path]::GetFileName($filePath)
+        $content += "$fileName`n"
+        try {
+            $content += (Get-Content -Path $filePath -Raw -Encoding UTF8) + "`n"
+        }
+        catch {
+            $content += "Erro ao ler '$filePath': $_`n"
+        }
+    }
+    $content | Set-Clipboard
+    Write-Output "Conteúdo copiado para o clipboard."
+}
