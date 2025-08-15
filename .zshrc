@@ -122,3 +122,44 @@ cat_files() {
         cat "$file"
     done
 }
+
+clip_files() {
+    if [ "$#" -eq 0 ]; then
+        echo "Uso: clip_files <arquivo1> <arquivo2> ..."
+        return 1
+    fi
+
+    content=""
+    for file in "$@"; do
+        if [ ! -f "$file" ]; then
+            echo "Erro: Arquivo '$file' não encontrado."
+            continue
+        fi
+        filename=$(basename "$file")
+        content+="$filename\n"
+        content+="$(cat "$file")\n"
+    done
+
+    if command -v pbcopy >/dev/null 2>&1; then
+        # macOS
+        printf "%b" "$content" | pbcopy
+    elif command -v wl-copy >/dev/null 2>&1; then
+        # Linux (Wayland)
+        printf "%b" "$content" | wl-copy
+    elif command -v xclip >/dev/null 2>&1; then
+        # Linux (X11)
+        printf "%b" "$content" | xclip -selection clipboard
+    elif command -v xsel >/dev/null 2>&1; then
+        # Linux (X11 alternativa)
+        printf "%b" "$content" | xsel --clipboard --input
+    else
+        echo "Nenhum comando de clipboard encontrado. Instale um deles:"
+        echo "# Linux X11: sudo apt install xclip     # Debian/Ubuntu"
+        echo "# Linux X11: sudo yum install xclip     # CentOS/RHEL"
+        echo "# Linux Wayland: sudo apt install wl-clipboard"
+        echo "# macOS: já vem com pbcopy"
+        return 1
+    fi
+
+    echo "Conteúdo copiado para o clipboard."
+}
