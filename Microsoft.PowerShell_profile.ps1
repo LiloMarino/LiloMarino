@@ -54,18 +54,17 @@ function cat_files {
             continue
         }
 
-        $filePath = $path.ProviderPath
-        $fileName = [System.IO.Path]::GetFileName($filePath)
-
-        Write-Output "$fileName"
+        $relativePath = Resolve-Path -Relative $file
+        Write-Output "$relativePath"
         try {
-            Get-Content -Path $filePath -Raw -Encoding UTF8
+            Get-Content -Path $path.ProviderPath -Raw -Encoding UTF8
         }
         catch {
-            Write-Output "Erro ao ler '$filePath': $_"
+            Write-Output "Erro ao ler '$relativePath': $_"
         }
     }
 }
+
 
 function clip_files {
     param (
@@ -85,14 +84,14 @@ function clip_files {
             Write-Output "Erro: Arquivo '$file' não encontrado."
             continue
         }
-        $filePath = $path.ProviderPath
-        $fileName = [System.IO.Path]::GetFileName($filePath)
-        $content += "$fileName`n"
+
+        $relativePath = Resolve-Path -Relative $file
+        $content += "$relativePath`n"
         try {
-            $content += (Get-Content -Path $filePath -Raw -Encoding UTF8) + "`n"
+            $content += (Get-Content -Path $path.ProviderPath -Raw -Encoding UTF8) + "`n"
         }
         catch {
-            $content += "Erro ao ler '$filePath': $_`n"
+            $content += "Erro ao ler '$relativePath': $_`n"
         }
     }
     $content | Set-Clipboard
