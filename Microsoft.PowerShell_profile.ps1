@@ -35,6 +35,14 @@ Set-Alias treeunix "C:\ProgramData\chocolatey\bin\tree.exe"
 function sha256 { param($file) certutil -hashfile $file SHA256 }
 function md5    { param($file) certutil -hashfile $file MD5 }
 
+function Escape-SpecialChars {
+    param (
+        [string]$Path
+    )
+    # Escapa parênteses que quebram globbing no PowerShell
+    return $Path -replace '([()])', '`$1'
+}
+
 function cat_files {
     param (
         [Parameter(ValueFromRemainingArguments = $true)]
@@ -47,7 +55,8 @@ function cat_files {
     }
 
     foreach ($file in $Files) {
-        $paths = Resolve-Path -Path $file -ErrorAction SilentlyContinue
+        $escapedFile = Escape-SpecialChars $file
+        $paths = Resolve-Path -Path $escapedFile -ErrorAction SilentlyContinue
 
         if (-not $paths) {
             Write-Output "Erro: Arquivo '$file' não encontrado."
@@ -80,7 +89,9 @@ function clip_files {
 
     $content = ""
     foreach ($file in $Files) {
-        $paths = Resolve-Path -Path $file -ErrorAction SilentlyContinue
+        $escapedFile = Escape-SpecialChars $file
+        $paths = Resolve-Path -Path $escapedFile -ErrorAction SilentlyContinue
+
         if (-not $paths) {
             Write-Output "Erro: Arquivo '$file' não encontrado."
             continue
