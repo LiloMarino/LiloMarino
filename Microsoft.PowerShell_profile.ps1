@@ -47,24 +47,25 @@ function cat_files {
     }
 
     foreach ($file in $Files) {
-        $path = Resolve-Path -LiteralPath $file -ErrorAction SilentlyContinue
+        $paths = Resolve-Path -Path $file -ErrorAction SilentlyContinue
 
-        if (-not $path) {
+        if (-not $paths) {
             Write-Output "Erro: Arquivo '$file' não encontrado."
             continue
         }
 
-        $relativePath = Resolve-Path -Relative $file
-        Write-Output "$relativePath"
-        try {
-            Get-Content -Path $path.ProviderPath -Raw -Encoding UTF8
-        }
-        catch {
-            Write-Output "Erro ao ler '$relativePath': $_"
+        foreach ($path in $paths) {
+            $relativePath = Resolve-Path -Relative $path.Path
+            Write-Output "$relativePath"
+            try {
+                Get-Content -Path $path.ProviderPath -Raw -Encoding UTF8
+            }
+            catch {
+                Write-Output "Erro ao ler '$relativePath': $_"
+            }
         }
     }
 }
-
 
 function clip_files {
     param (
@@ -79,19 +80,21 @@ function clip_files {
 
     $content = ""
     foreach ($file in $Files) {
-        $path = Resolve-Path -LiteralPath $file -ErrorAction SilentlyContinue
-        if (-not $path) {
+        $paths = Resolve-Path -Path $file -ErrorAction SilentlyContinue
+        if (-not $paths) {
             Write-Output "Erro: Arquivo '$file' não encontrado."
             continue
         }
 
-        $relativePath = Resolve-Path -Relative $file
-        $content += "$relativePath`n"
-        try {
-            $content += (Get-Content -Path $path.ProviderPath -Raw -Encoding UTF8) + "`n"
-        }
-        catch {
-            $content += "Erro ao ler '$relativePath': $_`n"
+        foreach ($path in $paths) {
+            $relativePath = Resolve-Path -Relative $path.Path
+            $content += "$relativePath`n"
+            try {
+                $content += (Get-Content -Path $path.ProviderPath -Raw -Encoding UTF8) + "`n"
+            }
+            catch {
+                $content += "Erro ao ler '$relativePath': $_`n"
+            }
         }
     }
     $content | Set-Clipboard
