@@ -17,7 +17,16 @@
     <img alt="PHP" height="50" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" />
     <img alt="React" height="50" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" />
     <img alt="Typescript" height="50" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" />
-    <img alt="Javascript" height="50" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" />
     <img alt="Bootstrap" height="50" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg" />
     <img alt="MySQL" height="50" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg" />
 </p>
+
+## 💻 Portfólio/Projetos
+
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=LiloMarino&repo=SimuladorFinanceiro)](https://github.com/LiloMarino/SimuladorFinanceiro)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=LiloMarino&repo=Quiz-RPG)](https://github.com/LiloMarino/Quiz-RPG)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=LiloMarino&repo=ControleFinanceiro)](https://github.com/LiloMarino/ControleFinanceiro)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=LiloMarino&repo=Learning-Cheat-Sheets)](https://github.com/LiloMarino/Learning-Cheat-Sheets)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=LiloMarino&repo=Leitura-de-Carteirinha)](https://github.com/LiloMarino/Leitura-de-Carteirinha)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=LiloMarino&repo=Fazenda-ED)](https://github.com/LiloMarino/Fazenda-ED)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=sb-uel&repo=ProjetoFliperama)](https://github.com/sb-uel/ProjetoFliperama)
