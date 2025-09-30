@@ -35,13 +35,21 @@ Set-Alias treeunix "C:\ProgramData\chocolatey\bin\tree.exe"
 function sha256 { param($file) certutil -hashfile $file SHA256 }
 function md5    { param($file) certutil -hashfile $file MD5 }
 
-function Escape-SpecialChars {
+function Get-FilesFromPattern {
     param (
-        [string]$Path
+        [string]$Pattern
     )
-    # Escapa parênteses que quebram globbing no PowerShell
-    return $Path -replace '([()])', '`$1'
+
+    $dir  = [System.IO.Path]::GetDirectoryName($Pattern)
+    if ([string]::IsNullOrEmpty($dir)) { $dir = "." }
+    $dir  = Resolve-Path -Path $dir -ErrorAction SilentlyContinue
+    if (-not $dir) { return @() }
+
+    $filePattern = [System.IO.Path]::GetFileName($Pattern)
+
+    return [System.IO.Directory]::GetFiles($dir, $filePattern)
 }
+
 
 function cat_files {
     param (
@@ -55,19 +63,18 @@ function cat_files {
     }
 
     foreach ($file in $Files) {
-        $escapedFile = Escape-SpecialChars $file
-        $paths = Resolve-Path -Path $escapedFile -ErrorAction SilentlyContinue
+        $paths = Get-FilesFromPattern $file
 
-        if (-not $paths) {
+        if (-not $paths -or $paths.Count -eq 0) {
             Write-Output "Erro: Arquivo '$file' não encontrado."
             continue
         }
 
         foreach ($path in $paths) {
-            $relativePath = Resolve-Path -Relative $path.Path
+            $relativePath = Resolve-Path -Relative $path
             Write-Output "$relativePath"
             try {
-                Get-Content -Path $path.ProviderPath -Raw -Encoding UTF8
+                Get-Content -Path $path -Raw -Encoding UTF8
             }
             catch {
                 Write-Output "Erro ao ler '$relativePath': $_"
@@ -89,25 +96,25 @@ function clip_files {
 
     $content = ""
     foreach ($file in $Files) {
-        $escapedFile = Escape-SpecialChars $file
-        $paths = Resolve-Path -Path $escapedFile -ErrorAction SilentlyContinue
+        $paths = Get-FilesFromPattern $file
 
-        if (-not $paths) {
+        if (-not $paths -or $paths.Count -eq 0) {
             Write-Output "Erro: Arquivo '$file' não encontrado."
             continue
         }
 
         foreach ($path in $paths) {
-            $relativePath = Resolve-Path -Relative $path.Path
+            $relativePath = Resolve-Path -Relative $path
             $content += "$relativePath`n"
             try {
-                $content += (Get-Content -Path $path.ProviderPath -Raw -Encoding UTF8) + "`n"
+                $content += (Get-Content -Path $path -Raw -Encoding UTF8) + "`n"
             }
             catch {
                 $content += "Erro ao ler '$relativePath': $_`n"
             }
         }
     }
+
     $content | Set-Clipboard
     Write-Output "Conteúdo copiado para o clipboard."
 }
