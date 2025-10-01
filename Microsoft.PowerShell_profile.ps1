@@ -118,3 +118,25 @@ function clip_files {
     $content | Set-Clipboard
     Write-Output "Conteúdo copiado para o clipboard."
 }
+
+function Load-DotEnv {
+    param (
+        [string]$Path = ".env"
+    )
+
+    if (-Not (Test-Path $Path)) {
+        Write-Error "Arquivo $Path não encontrado em $PWD"
+        return
+    }
+
+    Get-Content $Path | ForEach-Object {
+        if ($_ -match "^\s*#") { return } # ignora comentários
+        if ($_ -match "^\s*$") { return } # ignora linhas vazias
+        $name, $value = $_ -split "=", 2
+        $name = $name.Trim()
+        $value = $value.Trim('"').Trim()
+        Write-Host "Carregando $name"
+        [System.Environment]::SetEnvironmentVariable($name, $value, "Process")
+    }
+}
+
