@@ -32,4 +32,5 @@
 [![Readme Card](https://github-readme-stats-gray-chi-27.vercel.app/api/pin/?username=LiloMarino&repo=Learning-Cheat-Sheets)](https://github.com/LiloMarino/Learning-Cheat-Sheets)
 [![Readme Card](https://github-readme-stats-gray-chi-27.vercel.app/api/pin/?username=LiloMarino&repo=Leitura-de-Carteirinha)](https://github.com/LiloMarino/Leitura-de-Carteirinha)
 [![Readme Card](https://github-readme-stats-gray-chi-27.vercel.app/api/pin/?username=LiloMarino&repo=Fazenda-ED)](https://github.com/LiloMarino/Fazenda-ED)
+[![Readme Card](https://github-readme-stats-gray-chi-27.vercel.app/api/pin/?username=LiloMarino&repo=Comparador-Renda-Fixa)](https://github.com/LiloMarino/Comparador-Renda-Fixa)
 [![Readme Card](https://github-readme-stats-gray-chi-27.vercel.app/api/pin/?username=sb-uel&repo=ProjetoFliperama)](https://github.com/sb-uel/ProjetoFliperama)
